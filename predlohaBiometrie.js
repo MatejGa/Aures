@@ -1,15 +1,16 @@
-let title, user, pin, pinCollection, fileName, building, userNoAccent, signer, serverRelativeUrlToFolder, DocumentTypeId, newName;
+let title, takeOver, pin, pinCollection, fileName, building, userNoAccent, signer, serverRelativeUrlToFolder, DocumentTypeId, newName;
 const appWebUrl = "/sites/WF/Biometrie"; //TODO: ZMĚNIT NA SLOŽKU
 const hostWebUrl = "/sites/WF";
 
-function sendToBiometrics() {
+function sendToBiometrics(documentType) {
   title = ""; //TODO: NÁZEV POLOŽKY (IDEÁLNĚ UNIKÁTNÍ - NESMÍ TAM BÝT ZNAKY, CO NEZVLÁDNE URL)
   pin = NWF$("#" + PinVar).val(); //TODO: PIN UŽIVATELE
   pinCollection = pin; //TODO: PIN UŽIVATELE
   fileName = ""; //TODO: NÁZEV SOUBORU (IDEÁLNĚ UNIKÁTNÍ - NESMÍ TAM BÝT ZNAKY, CO NEZVLÁDNE URL)
-  signes = ""; //TODO: PODEPISUJÍ, TAKŽE TŘEBA PAVEL.PALAK
+  signer = "matej.gazda"; //TODO: SPRÁCE, U KOHO SE PODEPISUJE, TAKŽE TŘEBA PAVEL.PALAK
+  takeOver = "matej.gazda"; //TODO: HLAVNÍ UŽIVATEL, KTERÝ PODEPISUJE, TAKŽE TŘEBA PAVEL.PALAK
   serverRelativeUrlToFolder = "AppKeyRecordsDoc/NewDocuments"; //TODO: ZMĚNIT NA SLOŽKU PRO APLIKACI, TAKŽE "AppName/NewDocuments"
-  DocumentTypeId = 1 //TODO: typ dokumentu, default 1
+  DocumentTypeId = documentType //TODO: typ dokumentu, Předávací = 1; Návratový = 2
 
   const dd = getPdfData();  //TODO: Dole upravit funkci "getPdfData", která vytváří PDF
   const pdfDocGenerator = pdfMake.createPdf(dd);
@@ -19,7 +20,7 @@ function sendToBiometrics() {
 }
 
 function getPdfData() {
-  // playground requires you to assign document definition to a variable called dd
+  //TODO: V případě potřeby různých formuláře sem dát například switch či jinou podmínkou, generovat pořád vně této funkce
   const dd = {}; //TODO: TVŮJ JSON PRO PDF
   return dd;
 }
@@ -27,9 +28,6 @@ function getPdfData() {
 // Upload the file.
 // You can upload files up to 2 GB with the REST API.
 function uploadFile(data) {
-  // Define the folder path for this example.
-
-  // Get test values from the file input and text input page controls.
   newName = fileName;
 
   // Add the file to the SharePoint folder.
@@ -123,7 +121,7 @@ function uploadFile(data) {
       signer,
       pinCollection,
       DocumentTypeId,
-      user
+      takeOver
     );
 
     // Send the request and return the promise.
