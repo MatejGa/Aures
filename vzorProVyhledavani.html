@@ -1,0 +1,23 @@
+<script
+  type="text/javascript"
+  src="/_layouts/15/js/aaaauto/SearchThroughSpSite.js"
+ ></script> <!-- Umístění scriptu na serveru -->
+<style>
+  table.dataTable {
+    margin: 0 !important; /* Vypadá to takto lépe */
+  } 
+</style>
+<div id="search-test"></div> <!-- Potřebný div pro inicializaci scriptu -->
+
+<script>
+  startSearch("search-test", //ID divu
+  {
+    //Možnosti scriptu, všechna nastavení jsou volitelná a není nutné je vyplnit
+    site: "current", //Na které site bude provedeno vyhledávání, current vyhledá na aktuální stránce, DEFAULT: current
+    lists: true, //Zahrnutí listů do vyhledávání, DEFAULT: true
+    listsArray: ["list1", "list2"], //V případě vyplnění bude vyhledání provedeno pouze skrze tyto listy, DEFAULT: []
+    libraries: false, //Zahrnutí knihoven do vyhledávání, DEFAULT: true
+    librariesArray: ["library1", "library"], //V případě vyplnění bude vyhledání provedeno pouze skrze tyto listy, DEFAULT: []
+    export: ["excel", "json"], //Jaké možnosti pro export budou vytvořeny, DEFAULT: []
+  });
+</script>
