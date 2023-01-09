@@ -1,16 +1,3 @@
-window.jQuery
-  ? "jQuery loaded"
-  : import("/_layouts/15/js/aaaauto/jquery.min.js");
-window.pdfMake
-  ? "PDFmake loaded"
-  : import("/_layouts/15/js/aaaauto/pdfMaker/pdfmake.min.js");
-import("/_layouts/15/js/aaaauto/pdfMaker/vfs_fonts.min.js");
-window.uploadFile
-  ? "uploadFile loaded"
-  : import("/_layouts/15/js/aaaauto/sendtobiometrics.js").then(
-      (m) => (uploadFile = m.default)
-    );
-
 function sendToBiometrics(docType) {
   const biometrieData = {
     title: "a", //TODO: NÁZEV POLOŽKY (IDEÁLNĚ UNIKÁTNÍ - NESMÍ TAM BÝT ZNAKY, CO NEZVLÁDNE URL)
@@ -36,3 +23,16 @@ function getPdfData() {
   const dd = {}; //TODO: TVŮJ JSON PRO PDF
   return dd;
 }
+
+window.jQuery
+  ? "jQuery loaded"
+  : import("/_layouts/15/js/aaaauto/jquery.min.js");
+window.pdfMake
+  ? "PDFmake loaded"
+  : import("/_layouts/15/js/aaaauto/pdfMaker/pdfmake.min.js");
+import("/_layouts/15/js/aaaauto/pdfMaker/vfs_fonts.min.js");
+window.uploadFile
+  ? "uploadFile loaded"
+  : import("/_layouts/15/js/aaaauto/sendtobiometrics.js").then(
+      (m) => (uploadFile = m.default)
+    );
